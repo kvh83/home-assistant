@@ -21,6 +21,9 @@ ATTR_OUTSIDE_TEMPERATURE = 'outside_temperature'
 ATTR_OUTSIDE_HUMIDITY = 'outside_humidity'
 ATTR_AIR_FLOW_SUPPLY = 'air_flow_supply'
 ATTR_AIR_FLOW_EXHAUST = 'air_flow_exhaust'
+ATTR_BYPASS_STATE = 'bypass_state'
+ATTR_CURRENT_POWER_CONSUMPTION = 'power_consumption'
+ATTR_FILTER_REPLACEMENT = 'filter_replacement'
 
 CONF_USER_AGENT = 'user_agent'
 

@@ -6,8 +6,9 @@ from homeassistant.helpers.dispatcher import dispatcher_connect
 from homeassistant.helpers.entity import Entity
 
 from . import (
-    ATTR_AIR_FLOW_EXHAUST, ATTR_AIR_FLOW_SUPPLY, ATTR_CURRENT_HUMIDITY,
-    ATTR_CURRENT_TEMPERATURE, ATTR_OUTSIDE_HUMIDITY, ATTR_OUTSIDE_TEMPERATURE,
+    ATTR_AIR_FLOW_EXHAUST, ATTR_AIR_FLOW_SUPPLY, ATTR_BYPASS_STATE, ATTR_CURRENT_HUMIDITY,
+    ATTR_CURRENT_POWER_CONSUMPTION, ATTR_CURRENT_TEMPERATURE, ATTR_FILTER_REPLACEMENT,
+    ATTR_OUTSIDE_HUMIDITY, ATTR_OUTSIDE_TEMPERATURE, 
     DOMAIN, SIGNAL_COMFOCONNECT_UPDATE_RECEIVED, ComfoConnectBridge)
 
 _LOGGER = logging.getLogger(__name__)
@@ -20,7 +21,10 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     from pycomfoconnect import (
         SENSOR_TEMPERATURE_EXTRACT, SENSOR_HUMIDITY_EXTRACT,
         SENSOR_TEMPERATURE_OUTDOOR, SENSOR_HUMIDITY_OUTDOOR,
-        SENSOR_FAN_SUPPLY_FLOW, SENSOR_FAN_EXHAUST_FLOW)
+        SENSOR_FAN_SUPPLY_FLOW, SENSOR_FAN_EXHAUST_FLOW,
+        SENSOR_POWER_CURRENT, SENSOR_DAYS_TO_REPLACE_FILTER,
+        SENSOR_BYPASS_STATE
+    )
 
     global SENSOR_TYPES
     SENSOR_TYPES = {
@@ -59,6 +63,24 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
             'm³/h',
             'mdi:air-conditioner',
             SENSOR_FAN_EXHAUST_FLOW
+        ],
+        ATTR_BYPASS_STATE: [
+            'Bypass state',
+            '%',
+            'mdi:percent',
+            SENSOR_BYPASS_STATE
+        ],
+        ATTR_CURRENT_POWER_CONSUMPTION: [
+            'Current power consumption',
+            'W',
+            'mdi:flash',
+            SENSOR_POWER_CURRENT
+        ],
+        ATTR_FILTER_REPLACEMENT: [
+            'Next filter replacement',
+            'days',
+            'mdi:cached',
+            SENSOR_DAYS_TO_REPLACE_FILTER
         ],
     }
 
